@@ -1,0 +1,210 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Samuele Amato</title>
+  <meta name="description" content="Samuele Amato's personal website." />
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Samuele Amato">
+  <link rel="canonical" href="https://samueleamato.xyz/index.html" />
+  <meta name="theme-color" content="#282828" />
+  <meta property="og:title" content="Samuele Amato | Personal Website" />
+  <meta property="og:description" content="Low-level dev building tools in C, Rust, and more." />
+  <meta property="og:image" content="https://samueleamatowebsite.github.io/pfp.png" />
+  <meta property="og:url" content="https://samueleamato.xyz/" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Samuele Amato | Personal Website" />
+  <meta name="twitter:description" content="C, Rust, OSS. Tools and projects from a 19 y/o dev." />
+  <meta name="twitter:image" content="https://samueleamatowebsite.github.io/pfp.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<canvas id="particle-canvas"></canvas>
+
+<main>
+  <header>
+    <div align="center">
+      <h1>Samuele Amato's Webpage</h1>
+    </div>
+  </header>
+
+  <section class="profile">
+          <div class="profile-pic-wrapper">
+    <img src="pfp.png" alt="Profile Picture" />
+    <div class="caption">Me, in the woods</div>
+  </div>
+
+<div class="profile-description">
+  <p>
+    19 y/o low-level dev who loves messing with C and Rust but occasionally dips into other stuff. OSS fan, I also share small projects on <a href="https://github.com/rdwei">GitHub</a>
+  </p>
+<div class="profile-links">
+  <a href="resume.pdf" target="_blank">Resume</a>
+  <span>//</span>
+  <a href="mailto:samuele@samueleamato.xyz">Email</a>
+  <span>//</span>
+  <a href="https://linkedin.com/in/tuo-profilo">LinkedIn</a>
+</div>
+
+</div>
+
+  </section>
+
+  <section class="columns-2">
+    <div class="left-column">
+      <section>
+        <h2>My Projects</h2>
+        <table>
+          <tbody>
+            <tr><td><a href="https://github.com/rdWei/C-rypt">C-rypt</a></td><td>Easy-to-Use Steganography tool entirely written in C.</td></tr>
+            <tr><td><a href="https://github.com/rdWei/mousice">mousice</a></td><td>Suckless CLI YouTube-Music Player.</td></tr>
+            <tr><td><a href="https://github.com/rdWei/Lawliet">Lawliet</a></td><td>Track down social media profiles.</td></tr>
+            <tr><td><a href="https://github.com/rdWei/exaPhisher">exaPhisher</a></td><td>Social Media Phishing Suite written in python &amp; php.</td></tr>
+            <tr><td><a href="https://github.com/rdWei/OsintTube">OsintTube</a></td><td>An Easy-to-Use YouTube OSINT Tool.</td></tr>
+            <tr><td><a href="https://github.com/rdWei/SocialMediaHackingToolkit">SMHacking</a></td><td>Social Media Hacking Suite.</td></tr>
+            <tr><td><a href="https://github.com/rdWei/RMirror">RMirror</a></td><td>Export all your reMarkable notes to your PC as PDF.</td></tr>
+            <tr><td><a href="https://github.com/rdWei/UMusic">UMusic</a></td><td>A feature-rich, lightweight PSP music player.</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section>
+        <h2 id="find-me-here">Find Me Here</h2>
+        <table>
+          <tbody>
+            <tr><td>Email</td><td><a href="mailto:samuele@samueleamato.xyz">samuele@samueleamato.xyz</a></td></tr>
+            <tr><td>GitHub</td><td><a href="https://github.com/rdwei">@rdwei</a></td></tr>
+            <tr><td>BlueSky</td><td><a href="https://bsky.app/profile/rdwei.bsky.social">rdwei.bsky.social</a></td></tr>
+            <tr><td>Discord Server</td><td><a href="https://discord.com/invite/m4madyG7jp">Join the community on Discord</a></td></tr>
+            <tr><td>GPG key</td><td><a href="gpg.txt">GPG key for encrypting mail if you know how</a></td></tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+
+    <div class="right-column">
+      <section>
+        <h2>My Posts</h2>
+        <ul class="posts-list">
+          {% for post in site.posts %}
+            <li>
+              <span>{{ post.date | date: "%Y-%m-%d" }}</span>
+              &nbsp;
+              <a href="{{ post.url }}">{{ post.title }}</a><br />
+              <small style="display:block; margin-left: 20px;">
+                {{ post.excerpt | truncate: 100 }}
+              </small>
+            </li>
+          {% endfor %}
+        </ul>
+      </section>
+    </div>
+  </section>
+</main>
+
+<script>
+  const canvas = document.getElementById('particle-canvas');
+  const ctx = canvas.getContext('2d');
+
+  let width, height;
+  let particles = [];
+
+  const gruvboxColors = [
+    '#fb4934', '#b16286', '#d3869b', '#fabd2f', '#b8bb26',
+    '#8ec07c', '#83a598', '#458588', '#fe8019',
+    '#d79921', '#928374', '#a89984',
+    '#ff69b4' // 🌸 Rosa aggiunto
+  ];
+
+  const baseColor = gruvboxColors[Math.floor(Math.random() * gruvboxColors.length)];
+
+  function resize() {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    const scale = devicePixelRatio;
+    canvas.width = width * scale;
+    canvas.height = height * scale;
+    canvas.style.width = width + 'px';
+    canvas.style.height = height + 'px';
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.scale(scale, scale);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+
+  class Particle {
+    constructor() {
+      this.x = Math.random() * width;
+      this.y = Math.random() * height;
+      this.vx = (Math.random() - 0.5) * 0.5;
+      this.vy = (Math.random() - 0.5) * 0.5;
+      this.radius = 2;
+    }
+
+    move() {
+      this.x += this.vx;
+      this.y += this.vy;
+      if (this.x < 0 || this.x > width) this.vx *= -1;
+      if (this.y < 0 || this.y > height) this.vy *= -1;
+    }
+
+    draw() {
+      ctx.beginPath();
+      ctx.fillStyle = hexToRGBA(baseColor, 0.8);
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  function hexToRGBA(hex, alpha) {
+    const r = parseInt(hex.substr(1, 2), 16);
+    const g = parseInt(hex.substr(3, 2), 16);
+    const b = parseInt(hex.substr(5, 2), 16);
+    return `rgba(${r},${g},${b},${alpha})`;
+  }
+
+  for (let i = 0; i < 70; i++) {
+    particles.push(new Particle());
+  }
+
+  function drawLines() {
+    const maxDist = 120;
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < maxDist) {
+          ctx.strokeStyle = hexToRGBA(baseColor, 1 - dist / maxDist);
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, width, height);
+    particles.forEach(p => {
+      p.move();
+      p.draw();
+    });
+    drawLines();
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+</script>
+
+</body>
+</html>
+

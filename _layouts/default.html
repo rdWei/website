@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" type="image/x-icon" />
+  <title>{{ page.title }}</title>
+  <style>
+    body {
+      font-family: 'Inter', 'Roboto', Arial, sans-serif;
+      background: #1b1b1b;
+      color: #ddd;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Canvas sfondo */
+    #particle-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      background: transparent;
+    }
+
+    header {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    header a {
+      font-weight: 700;
+      color: #fabd2f; /* colore giallo-arancio */
+      text-decoration: none;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+      text-shadow: 0 0 3px rgba(0,0,0,0.8);
+      position: relative;
+      z-index: 1;
+    }
+
+    header a:hover {
+      color: #d1a91a;
+      text-shadow: 0 0 5px rgba(0,0,0,0.9);
+    }
+
+    h1.post-title {
+      font-size: 2.2rem;
+      margin: 1rem auto 1rem auto;
+      max-width: 800px;
+      text-align: center;
+      color: #fabd2f;
+      font-family: 'Inter', 'Roboto', Arial, sans-serif;
+      font-weight: 700;
+      text-shadow: 0 0 4px rgba(0,0,0,0.85);
+      padding-bottom: 0.3em;
+      border-bottom: none;
+      position: relative;
+      z-index: 1;
+    }
+
+    h2, h3, h4, h5, h6 {
+      max-width: 800px;
+      margin: 1rem 0 1rem 0;
+      padding-bottom: 0.3em;
+      border-bottom: 2px solid rgba(250, 189, 47, 0.5);
+      text-align: left;
+      color: #fabd2f;
+      position: relative;
+      z-index: 1;
+    }
+
+    main {
+      max-width: 900px;
+      margin: auto;
+      padding: 0 1rem 3rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      padding: 1rem;
+      color: #888;
+      font-size: 0.9rem;
+      font-family: 'Inter', 'Roboto', Arial, sans-serif;
+      position: relative;
+      z-index: 1;
+    }
+
+	a {
+	  color: #83a598;
+	  text-decoration: none;
+	}
+
+	a:hover {
+	  text-decoration: underline;
+	}
+	.post-date {
+  text-align: center;
+  font-size: 1rem;
+  color: #ccc;
+  margin-top: -0.5rem;
+  margin-bottom: 1.5rem;
+  font-family: 'Inter', 'Roboto', Arial, sans-serif;
+  opacity: 0.85;
+  position: relative;
+  z-index: 1;
+}
+
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <canvas id="particle-canvas"></canvas>
+
+  <header>
+    <a href="{{ '/' | relative_url }}">Home</a>
+  </header>
+
+  {% if page.title %}
+  <h1 class="post-title">{{ page.title }}</h1>
+  {% if page.date %}
+<p class="post-date">{{ page.date | date: "%B %-d, %Y" }}</p>
+{% endif %}
+  {% endif %}
+
+  <main>
+    {{ content }}
+  </main>
+
+  <script>
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+
+    let width, height;
+    let particles = [];
+    const particleCount = 70;
+
+    // Palette più ampia di colori (tonalità gruvbox + giallo-arancio)
+    const colorPalette = [
+      '#6b5868', // viola-ulivo base (vecchio h1)
+      '#7d6b81', // viola-ulivo medio (vecchio h2)
+      '#9a879a', // viola-ulivo più chiaro (vecchio h3)
+      '#b4a4b2', // tonalità più soft (vecchio h4-h6)
+      '#fabd2f', // giallo-arancio (colore h fisso)
+      '#d79921', // giallo-gruvbox scuro
+      '#b57614', // giallo-arancio più scuro
+      '#f2e5bc'  // beige chiaro gruvbox
+    ];
+
+    // Funzione per ottenere un colore random da palette
+    function getRandomColor() {
+      return colorPalette[Math.floor(Math.random() * colorPalette.length)];
+    }
+
+    function resize() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width * devicePixelRatio;
+      canvas.height = height * devicePixelRatio;
+      canvas.style.width = width + 'px';
+      canvas.style.height = height + 'px';
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(devicePixelRatio, devicePixelRatio);
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.vx = (Math.random() - 0.5) * 0.5;
+        this.vy = (Math.random() - 0.5) * 0.5;
+        this.radius = 2;
+        this.color = getRandomColor();
+      }
+
+      move() {
+        this.x += this.vx;
+        this.y += this.vy;
+
+        if (this.x < 0 || this.x > width) this.vx *= -1;
+        if (this.y < 0 || this.y > height) this.vy *= -1;
+      }
+
+      draw() {
+        ctx.beginPath();
+        ctx.fillStyle = hexToRGBA(this.color, 0.8);
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function hexToRGBA(hex, alpha) {
+      const r = parseInt(hex.substr(1, 2), 16);
+      const g = parseInt(hex.substr(3, 2), 16);
+      const b = parseInt(hex.substr(5, 2), 16);
+      return `rgba(${r},${g},${b},${alpha})`;
+    }
+
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+
+    function drawLines() {
+      const maxDist = 120;
+
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < maxDist) {
+            // Scegli colore random per ogni linea da palette
+            const lineColor = getRandomColor();
+            ctx.strokeStyle = hexToRGBA(lineColor, 1 - dist / maxDist);
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+
+      particles.forEach(p => {
+        p.move();
+        p.draw();
+      });
+
+      drawLines();
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
+</body>
+</html>
+
