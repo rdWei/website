@@ -3,10 +3,19 @@
 <head>
   <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" type="image/x-icon" />
   <title>{{ page.title }}</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
+    @font-face {
+      font-family: 'Departure Mono';
+      src: url('{{ "/fonts/DepartureMono-1.500/DepartureMono-Regular.woff2" | relative_url }}') format('woff2'),
+           url('{{ "/fonts/DepartureMono-1.500/DepartureMono-Regular.woff" | relative_url }}') format('woff'),
+           url('{{ "/fonts/DepartureMono-1.500/DepartureMono-Regular.otf" | relative_url }}') format('opentype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
     body {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Departure Mono', monospace;
       background: #1b1b1b;
       color: #ddd;
       margin: 0;
@@ -44,7 +53,7 @@
       text-shadow: 0 0 3px rgba(0,0,0,0.8);
       position: relative;
       z-index: 1;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Departure Mono', monospace;
     }
 
     header a:hover {
@@ -58,7 +67,7 @@
       max-width: 800px;
       text-align: center;
       color: #fabd2f;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Departure Mono', monospace;
       font-weight: 700;
       text-shadow: 0 0 4px rgba(0,0,0,0.85);
       padding-bottom: 0.3em;
@@ -69,14 +78,14 @@
 
     h2, h3, h4, h5, h6 {
       max-width: 800px;
-      margin: 1rem 0;
+      margin: 1rem 0 1rem 0;
       padding-bottom: 0.3em;
       border-bottom: 2px solid rgba(250, 189, 47, 0.5);
       text-align: left;
       color: #fabd2f;
       position: relative;
       z-index: 1;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Departure Mono', monospace;
     }
 
     main {
@@ -85,7 +94,7 @@
       padding: 0 1rem 3rem;
       position: relative;
       z-index: 1;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Departure Mono', monospace;
     }
 
     footer {
@@ -94,7 +103,7 @@
       padding: 1rem;
       color: #888;
       font-size: 0.9rem;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Departure Mono', monospace;
       position: relative;
       z-index: 1;
     }
@@ -102,7 +111,7 @@
     a {
       color: #83a598;
       text-decoration: none;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Departure Mono', monospace;
     }
 
     a:hover {
@@ -115,7 +124,7 @@
       color: #ccc;
       margin-top: -0.5rem;
       margin-bottom: 1.5rem;
-      font-family: 'Inter', sans-serif;
+      font-family: 'Departure Mono', monospace;
       opacity: 0.85;
       position: relative;
       z-index: 1;
@@ -184,7 +193,6 @@
       move() {
         this.x += this.vx;
         this.y += this.vy;
-
         if (this.x < 0 || this.x > width) this.vx *= -1;
         if (this.y < 0 || this.y > height) this.vy *= -1;
       }
@@ -210,13 +218,11 @@
 
     function drawLines() {
       const maxDist = 120;
-
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
           const dy = particles[i].y - particles[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-
           if (dist < maxDist) {
             const lineColor = getRandomColor();
             ctx.strokeStyle = hexToRGBA(lineColor, 1 - dist / maxDist);
@@ -232,7 +238,10 @@
 
     function animate() {
       ctx.clearRect(0, 0, width, height);
-      particles.forEach(p => { p.move(); p.draw(); });
+      particles.forEach(p => {
+        p.move();
+        p.draw();
+      });
       drawLines();
       requestAnimationFrame(animate);
     }
