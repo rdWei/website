@@ -1,14 +1,23 @@
+@font-face {
+  font-family: 'Departure Mono';
+  src: url('fonts/DepartureMono-1.500/DepartureMono-Regular.woff2') format('woff2'),
+       url('fonts/DepartureMono-1.500/DepartureMono-Regular.woff') format('woff'),
+       url('fonts/DepartureMono-1.500/DepartureMono-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'Departure Mono', Arial, sans-serif;
   background: #282828;
   color: #ebdbb2;
 }
 
 .profile-pic-wrapper {
   position: relative;
-  width: 170px; /* stessa larghezza immagine */
-  height: 170px; /* stessa altezza immagine */
+  width: 170px;
+  height: 170px;
   flex-shrink: 0;
 }
 
@@ -22,16 +31,15 @@ body {
 
 .profile-pic-wrapper .caption {
   position: absolute;
-  bottom: -1.5em; /* posiziona la caption sotto l'immagine */
+  bottom: -1.5em;
   width: 100%;
   text-align: center;
   font-style: italic;
   font-size: 0.85em;
   color: #bdae93;
-  pointer-events: none; /* così non interferisce con click o hover */
+  pointer-events: none;
   user-select: none;
 }
-
 
 main {
   max-width: 1044px;
@@ -132,9 +140,11 @@ ul.posts-list li small {
   .columns-2 {
     flex-direction: column;
   }
+
   .left-column, .right-column {
     min-width: auto;
   }
+}
 
 .profile-description .profile-links {
   display: inline-flex;
@@ -155,7 +165,6 @@ ul.posts-list li small {
 }
 
 .profile-description .profile-links span {
-  color: #928374; /* colore neutro per i separatori */
+  color: #928374;
 }
-
 
