@@ -8,6 +8,7 @@
 }
 
 body {
+  cursor: url('assets/cursor/cursor.cur'), auto;
   margin: 0;
   font-family: 'Departure Mono', Arial, sans-serif;
   background: #282828;
@@ -61,6 +62,7 @@ a {
 
 a:hover {
   text-decoration: underline;
+  cursor: url('assets/cursor/hover.cur'), pointer;
 }
 
 table {
