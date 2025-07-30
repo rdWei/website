@@ -170,3 +170,21 @@ ul.posts-list li small {
   color: #928374;
 }
 
+.profile-links-small {
+  margin-top: 1.0rem;
+  text-align: left;
+}
+
+.profile-links-small small a {
+  text-decoration: none;
+  color: #FF7A30; /* o quello che vuoi */
+}
+
+.profile-links-small small a:hover {
+  text-decoration: underline;
+}
+
+.profile-links-small span {
+  color: #928374;
+}
+
