@@ -1,6 +1,7 @@
 ---
 title: "Why I Use a Dumbphone in 2025 (and Why You Should Too)"
 date: 2025-06-04
+image: /assets/images/nokia.gif
 ---
 
 Imagine living in 2025 without notifications, without constant updates. While everyone carries a phone in their pocket with a thousand reasons to get distracted, I use a phone without apps, without social media, without distractions. Many would say I’m limited, but I say I’m free.
