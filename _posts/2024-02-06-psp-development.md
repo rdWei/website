@@ -1,6 +1,7 @@
 ---
 title: "My Experience with PSP Development"
 date: 2024-02-06
+image: https://samueleamato.xyz/assets/images/pspfetch.jpeg
 ---
 
 The console that has stayed with me even **twenty years** later is the **PlayStation Portable**. 
