@@ -52,20 +52,6 @@
 	}
 
 
-header .left {
-  position: sticky; /* o fixed se vuoi sempre fisso */
-  top: 0;
-  left: 0;
-  background: #1b1b1b;
-  padding-right: 1rem;
-  /* imposta larghezza fissa per la parte sinistra */
-  width: 150px; /* esempio */
-  height: 100vh; /* se vuoi che occupi tutta l’altezza */
-  display: flex;
-  align-items: center;
-  z-index: 1100; /* sopra tutto */
-}
-
     header a {
       font-weight: 700;
       color: #fabd2f;
@@ -157,9 +143,7 @@ header .left {
   <canvas id="particle-canvas"></canvas>
 
   <header>
-	  <div class="left">
     <a href="{{ '/' | relative_url }}">Home</a>
-	  </div>
   </header>
 
   {% if page.title %}
