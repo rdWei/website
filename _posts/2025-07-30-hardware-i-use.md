@@ -1,5 +1,5 @@
 ---
-title: "My Gear"
+title: "Hardware I Use"
 date: 2025-07-30
 ---
 
