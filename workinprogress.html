@@ -26,6 +26,7 @@
     h1 {
       font-size: 2.5rem;
       font-weight: bold;
+      margin-bottom: 20px;
     }
     .dots::after {
       content: '';
@@ -37,6 +38,22 @@
       50% { content: '..'; }
       75% { content: '...'; }
       100% { content: ''; }
+    }
+    a.home-btn {
+      display: inline-block;
+      padding: 10px 18px;
+      margin-top: 10px;
+      background-color: transparent;
+      border: 2px solid #ebdbb2;
+      border-radius: 8px;
+      color: #ebdbb2;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    a.home-btn:hover {
+      background-color: #ebdbb2;
+      color: #282828;
     }
     canvas {
       position: fixed;
@@ -51,6 +68,7 @@
 <canvas id="particle-canvas"></canvas>
 
 <h1>Work in Progress<span class="dots"></span></h1>
+<a href="index.html" class="home-btn">Home</a>
 
 <script>
   const canvas = document.getElementById('particle-canvas');
