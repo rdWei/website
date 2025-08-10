@@ -51,6 +51,21 @@
 	  z-index: 1000; /* sopra le particelle e i contenuti */
 	}
 
+
+header .left {
+  position: sticky; /* o fixed se vuoi sempre fisso */
+  top: 0;
+  left: 0;
+  background: #1b1b1b;
+  padding-right: 1rem;
+  /* imposta larghezza fissa per la parte sinistra */
+  width: 150px; /* esempio */
+  height: 100vh; /* se vuoi che occupi tutta l’altezza */
+  display: flex;
+  align-items: center;
+  z-index: 1100; /* sopra tutto */
+}
+
     header a {
       font-weight: 700;
       color: #fabd2f;
