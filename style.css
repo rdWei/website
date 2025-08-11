@@ -3,6 +3,7 @@
   src: url('fonts/DepartureMono-1.500/DepartureMono-Regular.woff2') format('woff2'),
        url('fonts/DepartureMono-1.500/DepartureMono-Regular.woff') format('woff'),
        url('fonts/DepartureMono-1.500/DepartureMono-Regular.otf') format('opentype');
+       url('fonts/pala.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
