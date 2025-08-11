@@ -7,7 +7,7 @@ date: 2025-07-30
 
 ## Desk Gear
 
-- **Mouse** — [Kensington Orbit Trackball Mouse](https://www.amazon.com/Kensington-Orbit-Trackball-Scroll-K72337US/dp/B002OOWB3O?crid=53N02BEQ222N&dib=eyJ2IjoiMSJ9.vT0yUMkzRavXGKa77DRpxzshjVXSEvc1XIh9PKWZOamPAiFttb99Z9rUHwRY4m3NA6_vOWjfzeQg2BodpFYBjQf8q31IjKmI48FAftZGz_K0OUUeydJIEEFAxdGEtjow5WktoBwAahJEppRGyOoJccLDiJeVCzOTES8WYrqYbVEJ6cRSaIt_az9pLw2iflMm-OM5uzMi1MCge6XdShXLgTbsLt1w319AWPTvQX8lGiE.qYkqd12GVyFzTf_UrjoF2VBtAVpbrLYpnWUvzAlIHCs&dib_tag=se&keywords=Kensington%2BOrbit%2BMouse&qid=1753906442&sprefix=kensington%2Borbit%2Bmouse%2Caps%2C225&sr=8-1&th=1)  
+- **Mouse** — [Seenda Trackball](https://it.aliexpress.com/item/1005007556974236.html)  
 - **Keyboard** — [Shura (DIY)](https://tex.com.tw/products/shura-diy-type)  
 - **Monitors** — 2× [KOORUI 24" 1920×1080](https://www.amazon.com/KOORUI-FreeSyncTM-Compatible-Ultra-Thin-24E4/dp/B09TTDRXNS?th=1)
 - **Monitor Arm** — [VIVO Dual Monitor Desk Mount](https://www.amazon.com/VIVO-Monitor-Adjustable-Screens-STAND-V002/dp/B009S750LA?dib=eyJ2IjoiMSJ9.52rzfU0jr0ATjhu5aeeFX5kFpW0OOVRwGyyQmW84zkOsp4piJWNjs51Q4aw-syY5Sw2qNk5kCkuieYBY4_tb9zziqj0-gvGMFbyQ6hWMjY5HM_sjufUFjAP2BGJnkN7aQaOXj-7HtiaToOLLD9gTika-_eiwz7Re8-WQq5ImcmSctogFlkSmMXJbSVuOAwgB8gp-ZYCxpyoOUQQl1-evv5vVReoO7-igFaZZcWLy9-w.2vdF9XlL_DVjTag0mnrZJVmXAV5sE1ccl35kTSyXuGM&dib_tag=se&keywords=monitor%2Bstand&qid=1753906636&sr=8-8&th=1)  
