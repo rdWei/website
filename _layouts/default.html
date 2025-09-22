@@ -182,11 +182,32 @@
   </footer>
 
   <script>
+
+function computeValues() {
+  // altezza totale della pagina
+  const pageHeight = Math.max(
+    document.body.scrollHeight,
+    document.documentElement.scrollHeight,
+    window.innerHeight
+  );
+
+  // base di riferimento: viewport di 1000px
+  const scale = pageHeight / 1000;
+
+  // minimo 70 particelle, massimo 300
+  const particleCount = Math.min(300, Math.max(70, Math.floor(70 * scale)));
+
+  // distanza proporzionale ma con limiti
+  const maxDist = Math.min(250, Math.max(120, Math.floor(120 * scale * 0.7)));
+
+  return { particleCount, maxDist };
+}
+
     const canvas = document.getElementById('particle-canvas');
     const ctx = canvas.getContext('2d');
     let width, height;
     let particles = [];
-    const particleCount = 70;
+    let { particleCount, maxDist } = computeValues();	
     const colorPalette = [
       '#6b5868', '#7d6b81', '#9a879a', '#b4a4b2',
       '#fabd2f', '#d79921', '#b57614', '#f2e5bc'
@@ -250,7 +271,6 @@
     }
 
     function drawLines() {
-      const maxDist = 120;
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
