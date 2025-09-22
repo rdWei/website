@@ -182,124 +182,114 @@
   </footer>
 
   <script>
-
 function computeValues() {
-  // altezza totale della pagina
   const pageHeight = Math.max(
     document.body.scrollHeight,
     document.documentElement.scrollHeight,
     window.innerHeight
   );
-
-  // base di riferimento: viewport di 1000px
   const scale = pageHeight / 1000;
-
-  // minimo 70 particelle, massimo 300
   const particleCount = Math.min(300, Math.max(70, Math.floor(70 * scale)));
-
-  // distanza proporzionale ma con limiti
   const maxDist = Math.min(250, Math.max(120, Math.floor(120 * scale * 0.7)));
-
   return { particleCount, maxDist };
 }
 
-    const canvas = document.getElementById('particle-canvas');
-    const ctx = canvas.getContext('2d');
-    let width, height;
-    let particles = [];
-    let { particleCount, maxDist } = computeValues();	
-    const colorPalette = [
-      '#6b5868', '#7d6b81', '#9a879a', '#b4a4b2',
-      '#fabd2f', '#d79921', '#b57614', '#f2e5bc'
-    ];
+const canvas = document.getElementById('particle-canvas');
+const ctx = canvas.getContext('2d');
+let width, height;
+let particles = [];
+let { particleCount, maxDist } = computeValues();
+const colorPalette = [
+  '#6b5868', '#7d6b81', '#9a879a', '#b4a4b2',
+  '#fabd2f', '#d79921', '#b57614', '#f2e5bc'
+];
 
-    function getRandomColor() {
-      return colorPalette[Math.floor(Math.random() * colorPalette.length)];
-    }
+function getRandomColor() {
+  return colorPalette[Math.floor(Math.random() * colorPalette.length)];
+}
 
-    function resize() {
-      width = window.innerWidth;
-      // Altezza totale della pagina, non solo viewport
-      height = Math.max(
-        document.body.scrollHeight,
-        document.documentElement.scrollHeight,
-        window.innerHeight
-      );
-      canvas.width = width * devicePixelRatio;
-      canvas.height = height * devicePixelRatio;
-      canvas.style.width = width + 'px';
-      canvas.style.height = height + 'px';
-      ctx.setTransform(1, 0, 0, 1, 0, 0);
-      ctx.scale(devicePixelRatio, devicePixelRatio);
-    }
+function resize() {
+  width = window.innerWidth;
+  height = Math.max(
+    document.body.scrollHeight,
+    document.documentElement.scrollHeight,
+    window.innerHeight
+  );
+  canvas.width = width * devicePixelRatio;
+  canvas.height = height * devicePixelRatio;
+  canvas.style.width = width + 'px';
+  canvas.style.height = height + 'px';
+  ctx.setTransform(1, 0, 0, 1, 0, 0);
+  ctx.scale(devicePixelRatio, devicePixelRatio);
+}
 
-    window.addEventListener('resize', resize);
-    resize();
+window.addEventListener('resize', resize);
+resize();
 
-    class Particle {
-      constructor() {
-        this.x = Math.random() * width;
-        this.y = Math.random() * height;
-        this.vx = (Math.random() - 0.5) * 0.5;
-        this.vy = (Math.random() - 0.5) * 0.5;
-        this.radius = 2;
-        this.color = getRandomColor();
-      }
-      move() {
-        this.x += this.vx;
-        this.y += this.vy;
-        if (this.x < 0 || this.x > width) this.vx *= -1;
-        if (this.y < 0 || this.y > height) this.vy *= -1;
-      }
-      draw() {
+class Particle {
+  constructor() {
+    this.x = Math.random() * width;
+    this.y = Math.random() * height;
+    this.vx = (Math.random() - 0.5) * 0.5;
+    this.vy = (Math.random() - 0.5) * 0.5;
+    this.radius = 2;
+    this.color = getRandomColor();     // Colore fisso del punto
+    this.lineColor = getRandomColor(); // Colore fisso per le linee
+  }
+  move() {
+    this.x += this.vx;
+    this.y += this.vy;
+    if (this.x < 0 || this.x > width) this.vx *= -1;
+    if (this.y < 0 || this.y > height) this.vy *= -1;
+  }
+  draw() {
+    ctx.beginPath();
+    ctx.fillStyle = hexToRGBA(this.color, 0.8);
+    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
+
+function hexToRGBA(hex, alpha) {
+  const r = parseInt(hex.substr(1, 2), 16);
+  const g = parseInt(hex.substr(3, 2), 16);
+  const b = parseInt(hex.substr(5, 2), 16);
+  return `rgba(${r},${g},${b},${alpha})`;
+}
+
+for (let i = 0; i < particleCount; i++) {
+  particles.push(new Particle());
+}
+
+function drawLines() {
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < maxDist) {
+        ctx.strokeStyle = hexToRGBA(particles[i].lineColor, 1 - dist / maxDist);
+        ctx.lineWidth = 1;
         ctx.beginPath();
-        ctx.fillStyle = hexToRGBA(this.color, 0.8);
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fill();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.stroke();
       }
     }
+  }
+}
 
-    function hexToRGBA(hex, alpha) {
-      const r = parseInt(hex.substr(1, 2), 16);
-      const g = parseInt(hex.substr(3, 2), 16);
-      const b = parseInt(hex.substr(5, 2), 16);
-      return `rgba(${r},${g},${b},${alpha})`;
-    }
+function animate() {
+  ctx.clearRect(0, 0, width, height);
+  particles.forEach(p => {
+    p.move();
+    p.draw();
+  });
+  drawLines();
+  requestAnimationFrame(animate);
+}
 
-    for (let i = 0; i < particleCount; i++) {
-      particles.push(new Particle());
-    }
-
-    function drawLines() {
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < maxDist) {
-            const lineColor = getRandomColor();
-            ctx.strokeStyle = hexToRGBA(lineColor, 1 - dist / maxDist);
-            ctx.lineWidth = 1;
-            ctx.beginPath();
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.stroke();
-          }
-        }
-      }
-    }
-
-    function animate() {
-      ctx.clearRect(0, 0, width, height);
-      particles.forEach(p => {
-        p.move();
-        p.draw();
-      });
-      drawLines();
-      requestAnimationFrame(animate);
-    }
-
-    animate();
+animate();
   </script>
 </body>
 </html>
