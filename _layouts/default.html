@@ -182,114 +182,116 @@
   </footer>
 
   <script>
-function computeValues() {
-  const pageHeight = Math.max(
-    document.body.scrollHeight,
-    document.documentElement.scrollHeight,
-    window.innerHeight
-  );
-  const scale = pageHeight / 1000;
-  const particleCount = Math.min(300, Math.max(70, Math.floor(70 * scale)));
-  const maxDist = Math.min(250, Math.max(120, Math.floor(120 * scale * 0.7)));
-  return { particleCount, maxDist };
-}
+    function computeValues() {
+      const pageHeight = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight,
+        window.innerHeight
+      );
+      const scale = pageHeight / 1000;
+      const particleCount = Math.min(300, Math.max(70, Math.floor(70 * scale)));
+      const maxDist = Math.min(250, Math.max(120, Math.floor(120 * scale * 0.7)));
+      return { particleCount, maxDist };
+    }
 
-const canvas = document.getElementById('particle-canvas');
-const ctx = canvas.getContext('2d');
-let width, height;
-let particles = [];
-let { particleCount, maxDist } = computeValues();
-const colorPalette = [
-  '#6b5868', '#7d6b81', '#9a879a', '#b4a4b2',
-  '#fabd2f', '#d79921', '#b57614', '#f2e5bc'
-];
+    const canvas = document.getElementById('particle-canvas');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let particles = [];
+    let { particleCount, maxDist } = computeValues();	
 
-function getRandomColor() {
-  return colorPalette[Math.floor(Math.random() * colorPalette.length)];
-}
+    const colorPalette = [
+      '#6b5868', '#7d6b81', '#9a879a', '#b4a4b2',
+      '#fabd2f', '#d79921', '#b57614', '#f2e5bc'
+    ];
 
-function resize() {
-  width = window.innerWidth;
-  height = Math.max(
-    document.body.scrollHeight,
-    document.documentElement.scrollHeight,
-    window.innerHeight
-  );
-  canvas.width = width * devicePixelRatio;
-  canvas.height = height * devicePixelRatio;
-  canvas.style.width = width + 'px';
-  canvas.style.height = height + 'px';
-  ctx.setTransform(1, 0, 0, 1, 0, 0);
-  ctx.scale(devicePixelRatio, devicePixelRatio);
-}
+    function getRandomColor() {
+      return colorPalette[Math.floor(Math.random() * colorPalette.length)];
+    }
 
-window.addEventListener('resize', resize);
-resize();
+    // Un singolo colore scelto una sola volta al load
+    const globalColor = getRandomColor();
 
-class Particle {
-  constructor() {
-    this.x = Math.random() * width;
-    this.y = Math.random() * height;
-    this.vx = (Math.random() - 0.5) * 0.5;
-    this.vy = (Math.random() - 0.5) * 0.5;
-    this.radius = 2;
-    this.color = getRandomColor();     // Colore fisso del punto
-    this.lineColor = getRandomColor(); // Colore fisso per le linee
-  }
-  move() {
-    this.x += this.vx;
-    this.y += this.vy;
-    if (this.x < 0 || this.x > width) this.vx *= -1;
-    if (this.y < 0 || this.y > height) this.vy *= -1;
-  }
-  draw() {
-    ctx.beginPath();
-    ctx.fillStyle = hexToRGBA(this.color, 0.8);
-    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-    ctx.fill();
-  }
-}
+    function resize() {
+      width = window.innerWidth;
+      height = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight,
+        window.innerHeight
+      );
+      canvas.width = width * devicePixelRatio;
+      canvas.height = height * devicePixelRatio;
+      canvas.style.width = width + 'px';
+      canvas.style.height = height + 'px';
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
+      ctx.scale(devicePixelRatio, devicePixelRatio);
+    }
 
-function hexToRGBA(hex, alpha) {
-  const r = parseInt(hex.substr(1, 2), 16);
-  const g = parseInt(hex.substr(3, 2), 16);
-  const b = parseInt(hex.substr(5, 2), 16);
-  return `rgba(${r},${g},${b},${alpha})`;
-}
+    window.addEventListener('resize', resize);
+    resize();
 
-for (let i = 0; i < particleCount; i++) {
-  particles.push(new Particle());
-}
-
-function drawLines() {
-  for (let i = 0; i < particles.length; i++) {
-    for (let j = i + 1; j < particles.length; j++) {
-      const dx = particles[i].x - particles[j].x;
-      const dy = particles[i].y - particles[j].y;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < maxDist) {
-        ctx.strokeStyle = hexToRGBA(particles[i].lineColor, 1 - dist / maxDist);
-        ctx.lineWidth = 1;
+    class Particle {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.vx = (Math.random() - 0.5) * 0.5;
+        this.vy = (Math.random() - 0.5) * 0.5;
+        this.radius = 2;
+      }
+      move() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < 0 || this.x > width) this.vx *= -1;
+        if (this.y < 0 || this.y > height) this.vy *= -1;
+      }
+      draw() {
         ctx.beginPath();
-        ctx.moveTo(particles[i].x, particles[i].y);
-        ctx.lineTo(particles[j].x, particles[j].y);
-        ctx.stroke();
+        ctx.fillStyle = hexToRGBA(globalColor, 0.8);
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fill();
       }
     }
-  }
-}
 
-function animate() {
-  ctx.clearRect(0, 0, width, height);
-  particles.forEach(p => {
-    p.move();
-    p.draw();
-  });
-  drawLines();
-  requestAnimationFrame(animate);
-}
+    function hexToRGBA(hex, alpha) {
+      const r = parseInt(hex.substr(1, 2), 16);
+      const g = parseInt(hex.substr(3, 2), 16);
+      const b = parseInt(hex.substr(5, 2), 16);
+      return `rgba(${r},${g},${b},${alpha})`;
+    }
 
-animate();
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+
+    function drawLines() {
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < maxDist) {
+            ctx.strokeStyle = hexToRGBA(globalColor, 1 - dist / maxDist);
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+      particles.forEach(p => {
+        p.move();
+        p.draw();
+      });
+      drawLines();
+      requestAnimationFrame(animate);
+    }
+
+    animate();
   </script>
 </body>
 </html>
