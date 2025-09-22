@@ -20,7 +20,7 @@
       cursor: url('/assets/cursor/cursor.cur'), auto;
       font-family: 'Departure Mono', monospace;
       background: #1b1b1b;
-      color: #e2e2e2; /* contrasto migliorato */
+      color: #e2e2e2;
       margin: 0;
       padding: 0;
       position: relative;
@@ -36,7 +36,7 @@
       top: 0;
       left: 0;
       width: 100vw;
-      height: 100vh;
+      height: 100%;
       pointer-events: none;
       z-index: 0;
       background: transparent;
@@ -103,7 +103,7 @@
       max-width: 65ch;
       margin: 2rem 0 1rem;
       padding-bottom: 0.2em;
-      border-bottom: none; 
+      border-bottom: none;
       text-align: left;
       color: #fabd2f;
       position: relative;
@@ -123,7 +123,7 @@
     }
 
     main {
-      max-width: 65ch;      /* larghezza ridotta per leggibilità */
+      max-width: 65ch;
       margin: auto;
       padding: 0 1.2rem;
       position: relative;
@@ -198,7 +198,12 @@
 
     function resize() {
       width = window.innerWidth;
-      height = window.innerHeight;
+      // Altezza totale della pagina, non solo viewport
+      height = Math.max(
+        document.body.scrollHeight,
+        document.documentElement.scrollHeight,
+        window.innerHeight
+      );
       canvas.width = width * devicePixelRatio;
       canvas.height = height * devicePixelRatio;
       canvas.style.width = width + 'px';
