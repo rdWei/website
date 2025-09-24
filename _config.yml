@@ -1,8 +1,4 @@
-defaults:
-  -
-    scope:
-      path: ""
-      type: "posts"
-    values:
-      layout: "default"
+# _config.yml
+plugins:
+  - jekyll-feed
 
