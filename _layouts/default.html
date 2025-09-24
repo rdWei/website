@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <link rel="icon" href="{{ '/favicon.ico' | relative_url }}" type="image/x-icon" />
+  <link rel="stylesheet" href="https://unpkg.com/bluesky-comments@0.8.0/dist/bluesky-comments.css">
   <title>Samuele Amato | {{ page.title }}</title>
   <meta property="og:image" content="{{ page.image }}" />
   <meta name="fediverse:creator" content="@rdwei@mastodon.social">
@@ -174,9 +175,32 @@
     {{ content }}
   </main>
 
+<div id="bluesky-comments"></div>
+
   <footer>
     &copy; {{ site.time | date: "%Y" }} Samuele Amato. All rights reserved.
   </footer>
+
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@18",
+    "react-dom": "https://esm.sh/react-dom@18"
+  }
+}
+</script>
+
+<script type="module">
+  import { BlueskyComments } from 'https://unpkg.com/bluesky-comments@0.8.0/dist/bluesky-comments.es.js';
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const uri = '{{ page.bluesky_post_uri }}'; // prende l’ID dal front matter
+    const author = 'samueleamato.xyz';
+    BlueskyComments.init('bluesky-comments', { uri, author });
+  });
+</script>
+
+
 </body>
 </html>
 
