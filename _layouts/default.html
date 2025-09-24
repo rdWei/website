@@ -194,11 +194,16 @@
   import { BlueskyComments } from 'https://unpkg.com/bluesky-comments@0.8.0/dist/bluesky-comments.es.js';
 
   document.addEventListener('DOMContentLoaded', function() {
-    const uri = '{{ page.bluesky_post_uri }}'; // prende l’ID dal front matter
-    const author = 'samueleamato.xyz';
-    BlueskyComments.init('bluesky-comments', { uri, author });
+    const uri = '{{ page.bluesky_post_uri }}'; // deve essere valorizzato nel front matter
+    const author = 'samueleamato.xyz'; // il tuo dominio o handle
+    if(uri) {
+      BlueskyComments.init('bluesky-comments', { uri, author });
+    } else {
+      console.warn('No Bluesky URI for this post');
+    }
   });
 </script>
+
 
 
 </body>
