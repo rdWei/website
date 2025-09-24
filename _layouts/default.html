@@ -45,6 +45,7 @@
       z-index: 1000;
       max-width: 900px;
       margin: auto;
+      background-color: #fabd2f;
     }
 
     header a {
@@ -62,6 +63,7 @@
     header a:hover {
       cursor: url('/assets/cursor/hover.cur'), pointer;
       text-shadow: 0 0 5px rgba(0,0,0,0.9);
+      background-color: black
     }
 
     h1.post-title {
@@ -113,7 +115,7 @@
     }
 
     main {
-      max-width: 65ch;
+      max-width: 70em;
       margin: auto;
       padding: 0 1.2rem;
       position: relative;
@@ -152,7 +154,13 @@
 <body>
 
   <header>
-    <a href="{{ '/' | relative_url }}">Home</a>
+  <nav>
+	  <a href="{{ '/' | relative_url }}">Home</a>
+	  <a href="/rss.xml">(RSS)</a>
+	  <a href="/about">About &amp; Contacts</a>
+	  <a href="/resume">CV</a>
+	  <a href="/projects">Projects</a>
+	</nav>
   </header>
 
   {% if page.title %}
