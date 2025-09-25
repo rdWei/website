@@ -8,7 +8,7 @@
   font-style: normal;
 }
 
-header a {
+/*header a {
       font-weight: 700;
       color: black;
       text-decoration: underline;
@@ -17,7 +17,7 @@ header a {
       position: relative;
       z-index: 1;
       font-family: 'Departure Mono', monospace;
-}
+}*/
 
 body {
   cursor: url('assets/cursor/cursor.cur'), auto;
