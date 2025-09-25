@@ -8,6 +8,17 @@
   font-style: normal;
 }
 
+header a {
+      font-weight: 700;
+      color: black;
+      text-decoration: underline;
+      font-style: italic
+      font-size: 1.0rem;
+      position: relative;
+      z-index: 1;
+      font-family: 'Departure Mono', monospace;
+}
+
 body {
   cursor: url('assets/cursor/cursor.cur'), auto;
   margin: 0;
