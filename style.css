@@ -12,7 +12,7 @@ body {
   cursor: url('assets/cursor/cursor.cur'), auto;
   margin: 0;
   font-family: 'Departure Mono', Arial, sans-serif;
-  background: #282828;
+  background: #000000;
   color: #ebdbb2;
   transform: scale(1.15);
   transform-origin: 0 0; /* mantieni l'origine in alto a sinistra */
@@ -162,9 +162,28 @@ ul.posts-list li small {
   font-size: 0.95em;
 }
 
-.profile-description .profile-links a {
+.profile-description a {
   color: #83a598;
   text-decoration: none;
+}
+
+.profile-links {
+  cursor: url('/assets/cursor/cursor.cur'), pointer;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0.30rem;
+  position: relative;
+  margin: auto;
+  background-color: #fabd2f;
+  color: black;
+  padding-top: 0.35rem;
+
+}
+
+.profile-links a {
+	color: black;
+	text-decoration: underline;
 }
 
 .profile-description .profile-links a:hover {
