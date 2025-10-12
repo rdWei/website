@@ -1,5 +1,5 @@
 ---
-title: "The Future of Authenticity: Human-Made as the New Mark"
+title: "The Future of Authenticity"
 date: 2025-07-30
 image: https://samueleamato.xyz/assets/images/human-made.jpg
 bluesky_post_uri: "https://bsky.app/profile/rdwei.bsky.social/post/3m2z5whohcc2k"
