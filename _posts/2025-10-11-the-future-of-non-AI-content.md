@@ -5,8 +5,6 @@ image: https://samueleamato.xyz/assets/images/human-made.jpg
 bluesky_post_uri: "https://bsky.app/profile/rdwei.bsky.social/post/3lzmfk7s67c2i"
 ---
 
-![](https://samueleamato.xyz/assets/images/human-made.jpg)
-
 A few days ago, I had been listening to a lofi playlist — you know, one of those endless background mixes people use to study. In a few minutes, something felt off. Briefly, the track lost its point, the rhythm and the melody wandered in a way that felt forced, as though it was trying to follow a pattern but couldn't commit to one.
 
 And that was when it hit me: this likely was AI-composed. I wasn't sure at first, but reading the comments put my mind at ease, some of the other listeners had noticed the same thing.

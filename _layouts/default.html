@@ -17,6 +17,20 @@
       font-display: swap;
     }
 
+.post-cover-image {
+  text-align: center; /* centra l'immagine */
+  margin: 1.5rem 0;   /* spazio sopra e sotto */
+}
+
+.post-cover-image img {
+  max-width: 400px;    /* larghezza massima media-piccola */
+  width: 100%;         /* responsive su schermi piccoli */
+  height: auto;        /* mantiene proporzioni */
+  border-radius: 4px;  /* leggermente arrotondata, opzionale */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3); /* ombra leggera, opzionale */
+}
+
+
     body {
       cursor: url('/assets/cursor/cursor.cur'), auto;
       font-family: 'Departure Mono', monospace;
@@ -170,6 +184,20 @@
       <p class="post-date">{{ page.date | date: "%B %-d, %Y" }}</p>
     {% endif %}
   {% endif %}
+
+{% if page.title %}
+  <h1 class="post-title">{{ page.title }}</h1>
+  {% if page.date %}
+    <p class="post-date">{{ page.date | date: "%B %-d, %Y" }}</p>
+  {% endif %}
+
+  {% if page.image %}
+    <div class="post-cover-image">
+      <img src="{{ page.image }}" alt="Cover image for {{ page.title }}">
+    </div>
+  {% endif %}
+{% endif %}
+
 
   <main>
     {{ content }}
