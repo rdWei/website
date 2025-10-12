@@ -2,24 +2,24 @@
 title: "The Future of Authenticity: Human-Made as the New Mark"
 date: 2025-07-30
 image: https://samueleamato.xyz/assets/images/human-made.jpg
-bluesky_post_uri: "https://bsky.app/profile/rdwei.bsky.social/post/3lzmfk7s67c2i"
+bluesky_post_uri: "https://bsky.app/profile/rdwei.bsky.social/post/3m2z5whohcc2k"
 ---
 
-A few days ago, I had been listening to a lofi playlist — you know, one of those endless background mixes people use to study. In a few minutes, something felt off. Briefly, the track lost its point, the rhythm and the melody wandered in a way that felt forced, as though it was trying to follow a pattern but couldn't commit to one.
+A few days ago, I had been listening to a lofi playlist, one of those endless background mixes people use to study. In a few minutes, something felt off. Briefly, the track lost its point, the rhythm and the melody wandered in a way that felt forced, as though it was trying to follow a pattern but couldn't commit to one.
 
-And that was when it hit me: this likely was AI-composed. I wasn't sure at first, but reading the comments put my mind at ease, some of the other listeners had noticed the same thing.
+And that was when it hit me: this likely was _AI-composed_. I wasn't sure at first, but reading the comments put my mind at ease, some of the other listeners had noticed the same thing.
 
-Objectively, there was ""nothing wrong"" with the sound. But having discovered that no one had actually composed it made all the difference to my experience. The music wasn't "wrong", but it felt hollow, like the function of it was missing.
+Objectively, there was ""nothing wrong"" with the sound. But having discovered that _no one had actually composed it_ made all the difference to my experience. The music wasn't "wrong", but it felt hollow, like the function of it was missing.
 
 ## Why Knowing the Creator Still Matters
 I do not believe that it's important to associate a piece of art with its artist. Personally, i dont do: an artist may be obnoxious, morally dubious, or simply a "piece of shit," yet if I like his work I am able to appreciate it completely. The art itself is sufficient.
 
-What does matter is that we know that a human being, someone capable of thought, intention and feeling, made it. Knowing that gives it a level of meaning, even if we don't particularly care about the individual who created it. There is a small but real distinction between consuming something that emerged from a conscious, emotional process and something produced by an algorithm.
+What does matter is that we know that a **human being**, someone capable of thought, intention and feeling, made it. Knowing that gives it a level of meaning, even if we don't particularly care about the individual who created it. There is a small but real distinction between consuming something that emerged from a conscious, emotional process and something produced by an algorithm.
 
 We attribute value not only to perfection, but to effort and intent. A sketch drawn by hand, a tune crafted over a series of weeks, or a brief film made with attention all carry traces of human decision-making, testing, and emotional investment. Having this knowledge inspires us to connect more deeply with the work and to appreciate it.
 
->Some might say: “If you don’t know it’s AI, you can still enjoy it.”
->That’s easy to say now, when we automatically assume every song we hear was made by a human. But in a not-so-distant future, when AI-generated content becomes everyday consumption, the doubt "am I listening to a real artist or not?" will come up much more often.
+Some might say: “If you don’t know it’s AI, you can still enjoy it.”
+That’s easy to say **now**, when we automatically assume every song we hear was made by a human. But in a not-so-distant future, when AI-generated content becomes everyday consumption, the doubt "am I listening to a real artist or not?" will come up much more often.
 
 ## AI Saturation
 
