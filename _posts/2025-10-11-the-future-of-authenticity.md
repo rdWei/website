@@ -2,7 +2,7 @@
 title: "The Future of Authenticity"
 date: 2025-07-30
 image: https://samueleamato.xyz/assets/images/human-made.jpg
-bluesky_post_uri: "https://bsky.app/profile/rdwei.bsky.social/post/3m2z5whohcc2k"
+bluesky_post_uri: "https://bsky.app/profile/rdwei.bsky.social/post/3m2z6bik4ck2a"
 ---
 
 A few days ago, I had been listening to a lofi playlist, one of those endless background mixes people use to study. In a few minutes, something felt off. Briefly, the track lost its point, the rhythm and the melody wandered in a way that felt forced, as though it was trying to follow a pattern but couldn't commit to one.
