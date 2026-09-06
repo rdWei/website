@@ -2,6 +2,7 @@
 <html lang="it">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Samuele Amato</title>
     <link rel="icon" type="image/png" href="./_assets/images/favicon.png">
     <link rel="stylesheet" href="./style.css">
@@ -10,19 +11,18 @@
 <body>
 
     <div style="text-align: center;">
-	    <h1>Samuele Amato aka <i>rdweii</i></h1>
+        <h1>Samuele Amato aka <i>rdweii</i></h1>
 
-		<div style="text-align: center; margin-top: -1.8em;">
-
-			<a href="connect">Connect With Me</a>
-		</div>
+        <div style="text-align: center; margin-top: -1.8em;">
+            <a href="connect">Connect With Me</a>
+        </div>
 
         <p>
             <img
                 alt="A geometric red cat"
                 class="normale"
                 src="_assets/images/cat.png"
-                style="width: 400px;"
+                style="width: 400px; max-width: 100%; height: auto;"
             >
         </p>
     </div>
@@ -35,11 +35,10 @@
         <a href="https://github.com/search?q=owner%3ASamueleAmato%20osint&amp;type=repositories">OSINT tools</a>.
         Beyond programming, I like writing
         (<a href="https://samueleamato.xyz/blog">not just code!</a>)
-	and have a strong interest in philosophy and biology!   <a href="https://cataas.com/cat/black,cute"><img src="cat.gif" alt="Descrizione" style="height:1em; width:auto; vertical-align:middle; margin-top:-1.1em; margin-bottom:-1em;"></a></p>
+    and have a strong interest in philosophy and biology!   <a href="https://cataas.com/cat/black,cute"><img src="cat.gif" alt="Descrizione" style="height:1em; width:auto; vertical-align:middle; margin-top:-1.1em; margin-bottom:-1em;"></a></p>
 
-
-<div style="display: flex; justify-content: center; white-space: nowrap; flex-wrap: wrap;">
-    <small>
+<div class="lists-container">
+    <small class="list-item">
         <ul>
             <li> Cool Stuff</li>
             <ul>
@@ -51,7 +50,7 @@
         </ul>
     </small>
 
-    <small style="padding-left: 30px;">
+    <small class="list-item">
         <ul>
             <li>Selected Projects</li>
             <ul>
@@ -63,18 +62,45 @@
         </ul>
     </small>
 
-    <small style="padding-left: 30px;">
+    <small class="list-item">
         <ul>
             <li>Selected Posts</li>
             <ul>
                 <li><a href="https://samueleamato.xyz/blog/my_expirience_with_PSP_development.html">PSP Development</a></li>
                 <li><a href="https://samueleamato.xyz/blog/why_i_use_a_dumbphone.html">Using a Dumbphone in 2026+</a></li>
                 <li><a href="https://samueleamato.xyz/blog/stop_writing_if_in_bash.html">Stop Writing <code>if</code> in bash</a></li>
-        <li style="list-style: none;"><i><a href="blog/" style="color: #444444;">see more...</a></i></li>
+                <li style="list-style: none;"><i><a href="blog/" style="color: #444444;">see more...</a></i></li>
             </ul>
         </ul>
     </small>
 </div>
+
+<style>
+/* COMPORTAMENTO DESKTOP: Esattamente l'originale, rigido e su una riga sola */
+.lists-container {
+    display: flex;
+    justify-content: center;
+    white-space: nowrap;
+    flex-wrap: nowrap;
+}
+
+/* Ripristino il tuo padding originale di 30px per staccare le liste successive */
+.list-item + .list-item {
+    padding-left: 30px;
+}
+
+/* COMPORTAMENTO SMARTPHONE: Sotto i 768px incolonno le liste */
+@media (max-width: 768px) {
+    .lists-container {
+        flex-direction: column;
+        white-space: normal;
+    }
+    
+    .list-item + .list-item {
+        padding-left: 0;
+    }
+}
+</style>
 
 </body>
 </html>

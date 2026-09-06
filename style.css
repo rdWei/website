@@ -104,4 +104,26 @@ img.normale {
     border: none;
 }
 
+/* Stile di base per schermi grandi (PC) - comportamento originale inalterato */
+.lists-container {
+    display: flex;
+    justify-content: center;
+    white-space: nowrap;
+    flex-wrap: nowrap;
+    gap: 30px; 
+}
 
+/* Stile per schermi piccoli (Smartphone) - scatta sotto i 768px */
+@media (max-width: 768px) {
+    .lists-container {
+        flex-direction: column;
+        white-space: normal; /* Permette al testo di andare a capo se lo schermo è molto stretto */
+        align-items: center; 
+        gap: 20px; 
+    }
+    
+    /* Rimuove i padding extra delle liste su mobile per centrarle meglio */
+    .lists-container ul {
+        padding-left: 0;
+    }
+}
